@@ -31,20 +31,20 @@ params.epsilon_y = 0.1;     % Coefficiente di cross-thrust del rotore principale
 % Condizioni Iniziali
 %-------------------------------------------------------
 
-alpha_0 = 0;         % [rad] Angolo di pitch iniziale
+alpha_0 = 0;            % [rad] Angolo di pitch iniziale
 alpha_dot_0 = 0;        % [rad/s] Derivata angolo di pitch iniziale
 beta_0 = 0;             % [rad] Angolo di yaw iniziale
 beta_dot_0 = 0;         % [rad/s] Derivata angolo di yaw iniziale
 
 
-% Vettori condizioni iniziali (Vettori Colonna!)
-q_0 = [alpha_0 beta_0]';                % Vettore condizioi iniziali per alpha e beta
+% Vettori condizioni iniziali (Vettori colonna!)
+q_0 = [alpha_0 beta_0]';                 % Vettore condizioi iniziali per alpha e beta
 q_dot_0 = [alpha_dot_0 beta_dot_0]';     % Vettore condizioni iniziali per alpha_dot e beta_dot
 
 %-------------------------------------------------------
-% Input del sistema (Forze F1 ed F2)
+% Input del sistema (forze F1 ed F2)
 %-------------------------------------------------------
-F1 = 0.5;         % [N] Forza del rotore principale
+F1 = 0.5;       % [N] Forza del rotore principale
 F2 = 0;         % [N] Forza del rotore di coda
 
 % Chiamata al simulatore su Simulink
