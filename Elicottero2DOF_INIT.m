@@ -64,15 +64,16 @@ M_0 = 46.5;                 % [uT] Intensità campo magnetico locale (Es. Livorn
 sigma_magn = 0.14;          % [muT] Dev. Std. Magnetometro
 st_magn = 0.005;            % Sample time Magnetometro (200 Hz)
 
+
 %% Parametri EKF
 
 %-------------------------------------------------------
 % Condizioni iniziali
 %-------------------------------------------------------
-P_0_alpha = deg2rad(5);
-P_0_alpha_dot = 0.20;
-P_0_beta = deg2rad(8);
-P_0_beta_dot = 0.20;
+P_0_alpha = deg2rad(5)^2;
+P_0_alpha_dot = 0.20^2;
+P_0_beta = deg2rad(8)^2;
+P_0_beta_dot = 0.20^2;
 
 x_0 = [0 0 0 0]';           % Stato iniziale
 
@@ -85,13 +86,37 @@ P0 = diag([P_0_alpha P_0_alpha_dot P_0_beta P_0_beta_dot]);
 % params.sigma_alpha_dot = 1e-4;              % Dev. Std. alpha_dot
 % params.sigma_beta = 1e-5;                   % Dev. Std. beta
 % params.sigma_beta_dot = 1e-4;               % Dev. Std. beta_dot
-params.sigma_F = 0.05;                        % [N] Dev.Std. Ingresso
+params.sigma_F = 0.05;                           % [N] Dev.Std. Ingresso
 
 params.R_acc = sigma_acc^2;
 params.R_magn = sigma_magn^2;
 
+% Attiva/Disattiva Outlyer (1 attivi, 0 disattivati)
+Outlier_flag = 1;
+
 % Flag per attivare/Disattivare Distanza di Mahalanobis
-MAHALANOBIS = false;
+MAHALANOBIS = true;
+
+%% Parametri UKF
+
+% SUKF (Filtro di Kalman Unscented Scalato)
+params.Alpha_UKF = 1e-2;    % Parametro Alpha UKF (Dispersione sigma-points)
+params.Beta_UKF = 2;        % Parametro Beta UKF (Ottimizza termini di ordine superiore)
+params.Kappa_UKF = 0;       % Parametro Kappa UKF (Parametro di scaling secondario)
+
+params.n = length(x_0);                         % Dimesnione stato
+params.N_sigma_points = 2 * params.n + 1;      % Numero di sigma points (2*4 + 1 = 9)
+
+% Parametro Lambda UKF
+params.lambda = params.Alpha_UKF^2 * (params.n + params.Kappa_UKF) - params.n;    
+
+% Peso del sigma-point centrale
+params.W_0 = params.lambda / (params.n + params.lambda) + (1 - params.Alpha_UKF^2 + params.Beta_UKF);
+
+% Peso dei restanti sigma-points
+params.W_i = 1 / (2 * (params.n + params.lambda));
+
+
 
 
 % Chiamata al simulatore su Simulink
