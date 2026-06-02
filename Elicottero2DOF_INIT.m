@@ -159,4 +159,4 @@ for i =-n_state:n_state
 end
 
 % Chiamata al simulatore su Simulink
-sim('Elicottero2DOF_Sim.slx');
+out = sim('Elicottero2DOF_Sim.slx');
