@@ -65,6 +65,17 @@ sigma_magn = 0.14;          % [muT] Dev. Std. Magnetometro
 st_magn = 0.005;            % Sample time Magnetometro (200 Hz)
 
 
+%% PARAMETRI GESTIONE OUTLIER E MAHALANOBIS
+
+% Attiva/Disattiva Outlyer (1 attivi, 0 disattivati)
+Outlier_flag = 1;
+
+% Flag per attivare/Disattivare Distanza di Mahalanobis
+MAHALANOBIS = true;
+
+% Treshold per distanza di mahalanobis
+m_treshold = 3;
+
 %% Parametri EKF
 
 %-------------------------------------------------------
@@ -91,16 +102,10 @@ params.sigma_F = 0.05;                           % [N] Dev.Std. Ingresso
 params.R_acc = sigma_acc^2;
 params.R_magn = sigma_magn^2;
 
-% Attiva/Disattiva Outlyer (1 attivi, 0 disattivati)
-Outlier_flag = 1;
+%% Parametri UKF
 
-% Flag per attivare/Disattivare Distanza di Mahalanobis
-MAHALANOBIS = true;
-
-%% Parametri AUKF
-
-% SUKF (Filtro di Kalman Unscented Aumentato Scalato)
-params.Alpha_UKF = 1e-2;    % Parametro Alpha UKF (Dispersione sigma-points)
+% SUKF (Filtro di Kalman Unscented Scalato)
+params.Alpha_UKF = 1e-2;       % Parametro Alpha UKF (Dispersione sigma-points)
 params.Beta_UKF = 2;        % Parametro Beta UKF (Ottimizza termini di ordine superiore)
 params.Kappa_UKF = 0;       % Parametro Kappa UKF (Parametro di scaling secondario)
 
@@ -111,14 +116,17 @@ params.n_input = 2;                             % Dimensione input
 params.n = params.n_state + params.n_input;     
 params.N_sigma_points = 2 * params.n + 1;       % Numero di sigma points (2*6 + 1 = 13)
 
-% Parametro Lambda UKF
-params.lambda = params.Alpha_UKF^2 * (params.n + params.Kappa_UKF) - params.n;    
+% Parametro Lambda UKF 
+% Per fase di predizione
+params.lambda = params.Alpha_UKF^2 * (params.n + params.Kappa_UKF) - params.n;
+% Per fase di correzione
+params.lambda_c = params.Alpha_UKF^2 * (params.n_state + params.Kappa_UKF) - params.n_state;
 
 % Assegnamento pesi per media e covarianza
 n = params.n;
-params.Wm = zeros(n, 2*n + 1);          % Pesi media
-params.Wc = zeros(n, 2*n + 1);          % Pesi covarianza
-
+params.Wm = zeros(2*n + 1, 1);          % Pesi media
+params.Wc = zeros(2*n + 1, 1);          % Pesi covarianza
+% Parte di predizione
 for i =-n:n
     idx = i + n + 1;
     if i == 0  
@@ -132,6 +140,23 @@ for i =-n:n
     end
 end
 
+% Parte di correzione (i sigma points sono 9 poichè si sfrutta rumore
+% additivo)
+n_state = params.n_state;
+params.Wm_c = zeros(2*n_state + 1, 1);          % Pesi media
+params.Wc_c = zeros(2*n_state + 1, 1);          % Pesi covarianza
+for i =-n_state:n_state
+    idx = i + n_state + 1;
+    if i == 0  
+        % Peso centrale
+        params.Wm_c(idx) = params.lambda_c / (n_state  + params.lambda_c);
+        params.Wc_c(idx) = (params.lambda_c / (n_state  + params.lambda_c)) + 1 - params.Alpha_UKF^2 + params.Beta_UKF;
+    else
+        % Pesi restanti
+        params.Wm_c(idx) = 1 / (2 * (n_state + params.lambda_c));
+        params.Wc_c(idx) = 1 / (2 * (n_state + params.lambda_c));
+    end
+end
 
 % Chiamata al simulatore su Simulink
 sim('Elicottero2DOF_Sim.slx');
