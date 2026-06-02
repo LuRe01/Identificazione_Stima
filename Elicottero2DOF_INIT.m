@@ -97,26 +97,40 @@ Outlier_flag = 1;
 % Flag per attivare/Disattivare Distanza di Mahalanobis
 MAHALANOBIS = true;
 
-%% Parametri UKF
+%% Parametri AUKF
 
-% SUKF (Filtro di Kalman Unscented Scalato)
+% SUKF (Filtro di Kalman Unscented Aumentato Scalato)
 params.Alpha_UKF = 1e-2;    % Parametro Alpha UKF (Dispersione sigma-points)
 params.Beta_UKF = 2;        % Parametro Beta UKF (Ottimizza termini di ordine superiore)
 params.Kappa_UKF = 0;       % Parametro Kappa UKF (Parametro di scaling secondario)
 
-params.n = length(x_0);                         % Dimesnione stato
-params.N_sigma_points = 2 * params.n + 1;      % Numero di sigma points (2*4 + 1 = 9)
+params.n_state = length(x_0);                   % Dimesnione stato
+params.n_input = 2;                             % Dimensione input
+
+% Caso con rumore di attuazione
+params.n = params.n_state + params.n_input;     
+params.N_sigma_points = 2 * params.n + 1;       % Numero di sigma points (2*6 + 1 = 13)
 
 % Parametro Lambda UKF
 params.lambda = params.Alpha_UKF^2 * (params.n + params.Kappa_UKF) - params.n;    
 
-% Peso del sigma-point centrale
-params.W_0 = params.lambda / (params.n + params.lambda) + (1 - params.Alpha_UKF^2 + params.Beta_UKF);
+% Assegnamento pesi per media e covarianza
+n = params.n;
+params.Wm = zeros(n, 2*n + 1);          % Pesi media
+params.Wc = zeros(n, 2*n + 1);          % Pesi covarianza
 
-% Peso dei restanti sigma-points
-params.W_i = 1 / (2 * (params.n + params.lambda));
-
-
+for i =-n:n
+    idx = i + n + 1;
+    if i == 0  
+        % Peso centrale
+        params.Wm(idx) = params.lambda / (n  + params.lambda);
+        params.Wc(idx) = (params.lambda / (n  + params.lambda)) + 1 - params.Alpha_UKF^2 + params.Beta_UKF;
+    else
+        % Pesi restanti
+        params.Wm(idx) = 1 / (2 * (n + params.lambda));
+        params.Wc(idx) = 1 / (2 * (n + params.lambda));
+    end
+end
 
 
 % Chiamata al simulatore su Simulink
