@@ -29,11 +29,14 @@ params.epsilon_y = 0.1;     % Coefficiente di cross-thrust del rotore principale
 % Sample time
 params.st = 0.00435;        % Pari al sample time del sensore piu veloce (accelerometro)
 
+Tf = 20;                    % Tempo di simulazione
+t = (0:params.st:Tf)';
+
 %-------------------------------------------------------
 % Condizioni Iniziali
 %-------------------------------------------------------
 
-alpha_0 = 0;            % [rad] Angolo di pitch iniziale
+alpha_0 = deg2rad(10);            % [rad] Angolo di pitch iniziale
 alpha_dot_0 = 0;        % [rad/s] Derivata angolo di pitch iniziale
 beta_0 = 0;             % [rad] Angolo di yaw iniziale
 beta_dot_0 = 0;         % [rad/s] Derivata angolo di yaw iniziale
@@ -46,8 +49,9 @@ q_dot_0 = [alpha_dot_0 beta_dot_0]';     % Vettore condizioni iniziali per alpha
 %-------------------------------------------------------
 % Input del sistema (forze F1 ed F2)
 %-------------------------------------------------------
-F1 = 0.5;       % [N] Forza del rotore principale
-F2 = 0;         % [N] Forza del rotore di coda
+F1 = 0.341 + 0.04 * sin(0.6 * t) + 0.02 * sin(1.4 * t);                % [N] Forza del rotore principale
+F2 = -0.006 + 0.010 * sin(0.8 * t + 0.3) + 0.006 * sin(1.7 * t);       % [N] Forza del rotore di coda
+u = [t, F1, F2];
 
 %% SENSORI: Accelerometro e Magnetometro (Vectornav vn-100)
 %-------------------------------------------------------
@@ -68,10 +72,10 @@ st_magn = 0.005;            % Sample time Magnetometro (200 Hz)
 %% PARAMETRI GESTIONE OUTLIER E MAHALANOBIS
 
 % Attiva/Disattiva Outlyer (1 attivi, 0 disattivati)
-Outlier_flag = 1;
+Outlier_flag = 0;
 
 % Flag per attivare/Disattivare Distanza di Mahalanobis
-MAHALANOBIS = true;
+MAHALANOBIS = false;
 
 % Treshold per distanza di mahalanobis
 m_treshold = 3;
@@ -86,7 +90,7 @@ P_0_alpha_dot = 0.20^2;
 P_0_beta = deg2rad(8)^2;
 P_0_beta_dot = 0.20^2;
 
-x_0 = [0 0 0 0]';           % Stato iniziale
+x_0 = [(deg2rad(10) + deg2rad(3)) 0.05 deg2rad(5) -0.05]';           % Stato iniziale
 
 % Matrice delle covarianze iniziale
 P0 = diag([P_0_alpha P_0_alpha_dot P_0_beta P_0_beta_dot]);
@@ -97,7 +101,7 @@ P0 = diag([P_0_alpha P_0_alpha_dot P_0_beta P_0_beta_dot]);
 % params.sigma_alpha_dot = 1e-4;              % Dev. Std. alpha_dot
 % params.sigma_beta = 1e-5;                   % Dev. Std. beta
 % params.sigma_beta_dot = 1e-4;               % Dev. Std. beta_dot
-params.sigma_F = 0.05;                           % [N] Dev.Std. Ingresso
+params.sigma_F = 1.8 * 0.05;                  % [N] Dev.Std. Ingresso
 
 params.R_acc = sigma_acc^2;
 params.R_magn = sigma_magn^2;
