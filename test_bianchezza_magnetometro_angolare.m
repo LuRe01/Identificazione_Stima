@@ -2,17 +2,22 @@
 clc
 alpha_test = 0.05;
 maxLag = 50;
+
 %% Lettura segnali
-% Innovazione magnetometrica vera usata dal filtro: [e_mx; e_my]
+% Innovazione magnetometrica: [e_mx; e_my]
 e_magn_raw = out.e_magn.Data;
+
 % Stima predetta EKF
 X_hat_pred_raw = out.X_hat_pred.Data;
+
 % Flag misura magnetometrica usata nella correzione
 flag_magn_raw = out.flag_magn.Data;
+
 %% Conversione formati
 e_magn = convert_vector_signal(e_magn_raw, 2);        % N x 2
 X_hat_pred = convert_state_signal(X_hat_pred_raw, 4); % N x 4
 flag_magn = convert_scalar_signal(flag_magn_raw);     % N x 1
+
 %% Riallineamento temporale
 t_e_magn = out.e_magn.Time;
 t_x_pred = out.X_hat_pred.Time;
@@ -20,22 +25,27 @@ t_flag_magn = out.flag_magn.Time;
 t_ref = t_e_magn;
 X_hat_pred_aligned = align_matrix_signal_to_time(X_hat_pred, t_x_pred, t_ref);
 flag_magn_aligned = align_scalar_signal_to_time(flag_magn, t_flag_magn, t_ref);
+
 %% Costruzione innovazione angolare equivalente a partire da e_magn
 e_mx = e_magn(:,1);
 e_my = e_magn(:,2);
 beta_pred = X_hat_pred_aligned(:,3);
 e_beta_magn_proj = -(sin(beta_pred).*e_mx + cos(beta_pred).*e_my) / M_0;
+
 %% Uso solo campioni magnetometrici validi/accettati
 idx_valid = flag_magn_aligned > 0.5;
 e_beta_magn_proj_valid = e_beta_magn_proj(idx_valid);
+
 %% Rimozione transitorio iniziale
 perc_transitorio = 0.10;
 N_valid = length(e_beta_magn_proj_valid);
 idx0 = floor(perc_transitorio*N_valid) + 1;
 e_beta_magn_proj_valid = e_beta_magn_proj_valid(idx0:end);
+
 %% Test di bianchezza Anderson
 res_beta_magn_proj = anderson_whiteness_test(e_beta_magn_proj_valid, maxLag, alpha_test, ...
     'Innovazione magnetometrica angolare proiettata');
+
 function result = anderson_whiteness_test(epsilon, maxLag, alpha, signal_name)
     epsilon = epsilon(:);
     epsilon = epsilon(~isnan(epsilon));
@@ -87,12 +97,14 @@ function result = anderson_whiteness_test(epsilon, maxLag, alpha, signal_name)
     result.perc_out = perc_out;
     result.test_passed = test_passed;
 end
+
 function x = convert_scalar_signal(xraw)
     x = squeeze(xraw);
     if isrow(x)
         x = x';
     end
 end
+
 function X = convert_vector_signal(Xraw, nv)
     sz = size(Xraw);
     if ismatrix(Xraw) && sz(2) == nv
@@ -120,6 +132,7 @@ function X = convert_vector_signal(Xraw, nv)
     end
     error('Formato vettoriale non riconosciuto. Size: [%s]', num2str(sz));
 end
+
 function X = convert_state_signal(Xraw, nx)
     sz = size(Xraw);
     if ismatrix(Xraw) && sz(2) == nx
@@ -147,6 +160,7 @@ function X = convert_state_signal(Xraw, nx)
     end
     error('Formato stato non riconosciuto. Size: [%s]', num2str(sz));
 end
+
 function y_aligned = align_scalar_signal_to_time(y, t_y, t_ref)
     y = y(:);
     t_y = t_y(:);
@@ -157,6 +171,7 @@ function y_aligned = align_scalar_signal_to_time(y, t_y, t_ref)
         y_aligned(k) = y(idx);
     end
 end
+
 function X_aligned = align_matrix_signal_to_time(X, t_X, t_ref)
     t_X = t_X(:);
     t_ref = t_ref(:);
@@ -168,6 +183,7 @@ function X_aligned = align_matrix_signal_to_time(X, t_X, t_ref)
         X_aligned(k,:) = X(idx,:);
     end
 end
+
 function a = wrapToPi_local(a)
     a = mod(a + pi, 2*pi) - pi;
 end
