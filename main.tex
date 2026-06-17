@@ -138,60 +138,66 @@ limiti e possibili sviluppi futuri.
 
 
 \section{Implementazione e validazione del modello}
-L'elicottero considerato è costituito da una struttura rigida vincolata a ruotare attorno a due assi ortogonali, consentendo i soli moti di pitch e yaw. La configurazione del sistema è descritta dal vettore di stato
-\[
-x=
-\begin{bmatrix}
-\alpha & \dot{\alpha} & \beta & \dot{\beta}
-\end{bmatrix}^{T}
-\]
-dove ($\alpha$) rappresenta l'angolo di beccheggio e ($\beta$) l'angolo di imbardata.
-Gli ingressi di controllo sono costituiti dalle spinte aerodinamiche generate dai due motori
-\[
-u=
-\begin{bmatrix}
-F_1 & F_2
-\end{bmatrix}^{T},
-\]
-dove ($F_1$) è associata al rotore principale e ($F_2$) al rotore di coda.
-L'implementazione del modello è stata realizzata mediante blocchi MATLAB Function
-all'interno dell'ambiente Simulink. Il modello include gli effetti gravitazionali,
-i contributi dissipativi dovuti agli attriti viscosi e gli accoppiamenti dinamici generati
-dall'azione simultanea dei due attuatori.
-Per verificare la correttezza dell'implementazione sono stati eseguiti diversi test di
-simulazione utilizzando ingressi costanti e sinusoidali. In tutti gli scenari considerati
-il comportamento ottenuto è risultato coerente con quello previsto dalle equazioni del moto,
-confermando la correttezza della modellazione e dell'implementazione numerica.
-
-
-
-Le specifiche principali del sistema sono riportate in \cref{tab:specifiche_modello}.
-
-\begin{table}[H]
-\centering
-\caption{Specifiche del modello.}
-\label{tab:specifiche_modello}
-\begin{tabular}{|>{\centering\arraybackslash}p{4.2cm}|>{\centering\arraybackslash}p{2.2cm}|>{\centering\arraybackslash}p{2.2cm}|>{\centering\arraybackslash}p{3cm}|}
-\hline
-\textbf{Parametro} & \textbf{Simbolo} & \textbf{Valore} & \textbf{Unità di misura} \\
-\hline
-Parametro 1 & $p_1$ & $0.0$ & m \\
-\hline
-Parametro 2 & $p_2$ & $0.0$ & kg \\
-\hline
-Parametro 3 & $p_3$ & $0.0$ & Nms \\
-\hline
-\end{tabular}
-\end{table}
-
-L'implementazione in ambiente MATLAB/Simulink è composta da \placeholder{numero e tipo di blocchi principali}. In \cref{fig:schema_simulink} è riportato lo schema generale del modello.
+L'elicottero considerato è costituito da una struttura rigida vincolata a ruotare attorno a due assi ortogonali,
+consentendo i soli moti di pitch e yaw come mostrato in Figura \ref{fig:Schema_Elicottero}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/placeholder_figure.pdf}
-    \caption{Schema Simulink del modello e dei sensori.}
-    \label{fig:schema_simulink}
+    \includegraphics[width=0.7\textwidth]{figures/modello.jpg}
+    \caption{Illustrazione del sistema fisico elicottero 2DOF.}
+    \label{fig:Schema_Elicottero}
 \end{figure}
+
+
+L'implementazione del modello è stata realizzata mediante blocchi MATLAB Function
+all'interno dell'ambiente Simulink come riportato in Figura \ref{fig:Schema_modello_simulink}.
+Il modello include gli effetti gravitazionali,
+i contributi dissipativi dovuti agli attriti viscosi e gli accoppiamenti dinamici generati
+dall'azione simultanea dei due attuatori.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/Schema_simulink_modello.png}
+    \caption{Schema Simulink modello del sistema}
+    \label{fig:Schema_modello_simulink}
+\end{figure}
+
+
+
+% Per verificare la correttezza dell'implementazione sono stati eseguiti diversi test di
+% simulazione utilizzando ingressi costanti e sinusoidali. In tutti gli scenari considerati
+% il comportamento ottenuto è risultato coerente con quello previsto dalle equazioni del moto,
+% confermando la correttezza della modellazione e dell'implementazione numerica.
+
+
+
+%Le specifiche principali del sistema sono riportate in \cref{tab:specifiche_modello}.
+
+%\begin{table}[H]
+%\centering
+%\caption{Specifiche del modello.}
+%\label{tab:specifiche_modello}
+%\begin{tabular}{|>{\centering\arraybackslash}p{4.2cm}|>{\centering\arraybackslash}p{2.2cm}|>{\centering\arraybackslash}p{2.2cm}|>{\centering\arraybackslash}p{3cm}|}
+%\hline
+%\textbf{Parametro} & \textbf{Simbolo} & \textbf{Valore} & \textbf{Unità di misura} \\
+%\hline
+%Parametro 1 & $p_1$ & $0.0$ & m \\
+%\hline
+%Parametro 2 & $p_2$ & $0.0$ & kg \\
+%\hline
+%Parametro 3 & $p_3$ & $0.0$ & Nms \\
+%\hline
+%\end{tabular}
+%\end{table}
+
+%L'implementazione in ambiente MATLAB/Simulink è composta da \placeholder{numero e tipo di blocchi principali}. In \cref{fig:schema_simulink} è riportato lo schema generale del modello.
+
+%\begin{figure}[H]
+   % \centering
+   % \includegraphics[width=0.9\textwidth]{figures/placeholder_figure.pdf}
+   % \caption{Schema Simulink del modello e dei sensori.}
+    %\label{fig:schema_simulink}
+%\end{figure}
 
 
 \subsection{Dinamica}
@@ -199,7 +205,7 @@ La dinamica dell'elicottero viene descritta attraverso due coordinate generalizz
 L'equazione che descrive il moto di pitch è
 
 \begin{equation}
-J_{\alpha}\ddot{\alpha} - c_{\alpha}\dot{\alpha} - mgl\sin(\alpha) + lF_1\cos(\beta) + \varepsilon_p lF_2\sin(\beta)
+J_{\alpha}\ddot{\alpha} = - c_{\alpha}\dot{\alpha} - mgl\sin(\alpha) + lF_1\cos(\beta) + \varepsilon_p lF_2\sin(\beta)
 \end{equation}
 
 dove ($J_{\alpha}$) rappresenta il momento di inerzia rispetto all'asse di pitch, ($m$) è la massa equivalente del sistema, ($g$) l'accelerazione gravitazionale, ($l$) il braccio meccanico dell'elicottero e ($c_{\alpha}$) il coefficiente di attrito viscoso.
@@ -207,7 +213,7 @@ L'equazione mostra come il moto di beccheggio sia influenzato da tre contributi 
 L'equazione relativa all'asse di yaw assume invece la forma
 
 \begin{equation}
-J_{\beta}(\alpha)\ddot{\beta} - c_{\beta}\dot{\beta} + lF_2\cos(\alpha) + \varepsilon_y lF_1\sin(\alpha)
+J_{\beta}(\alpha)\ddot{\beta} = - c_{\beta}\dot{\beta} + lF_2\cos(\alpha) + \varepsilon_y lF_1\sin(\alpha)
 \end{equation}
 
 dove il momento di inerzia equivalente attorno all'asse verticale dipende dall'assetto del sistema secondo la relazione
@@ -228,37 +234,183 @@ si ottiene il modello non lineare nello spazio di stato
 \dot{x}=f(x,u,w)
 \end{equation}
 
-che costituisce la base per la progettazione dei filtri di stima sviluppati nelle sezioni successive.
+con vettore di ingresso 
+
+\begin{equation}
+u = [F_1 \quad F_2]^T
+\end{equation}
+
+Dove $F_1$ rappresenta la forza del rotore principale ed $F_2$ la forza
+del rotore di coda.
+
+La funzione MATLAB visibile in Figura \ref{fig:Schema_modello_simulink} implementa
+le equazioni del modello analizzate in precedenza sotto forma di dinamica inversa
+secondo l'equazione
+
+\begin{equation}
+\ddot{x} = M^{-1}(Bu - n)
+\end{equation}
+
+Dove $M$ è la matrice di inerzia
+
+\begin{equation}
+    M =
+    \begin{bmatrix}
+        J_{\alpha} & 0  \\
+        0 & J_{\beta}(\alpha)
+    \end{bmatrix}
+\end{equation}
+
+$B$ è il vettore delle forze generalizzate
+
+\begin{equation}
+    B =
+    \begin{bmatrix}
+        l\cos(\beta) & \epsilon_pl\sin(\beta) \\
+        \epsilon_yl\sin(\alpha) & l\cos(\alpha)
+    \end{bmatrix}
+\end{equation}
+
+ed $n$ raccoglie i termini di attrito viscoso e forza di gravità.
+
+\begin{equation}
+    n =
+    \begin{bmatrix}
+        c_{\alpha}\dot{\alpha} + mgl\sin(\alpha)    \\
+        c_{\beta}\dot{\beta}
+    \end{bmatrix}
+\end{equation}
+
+In Tabella \ref{tab:Parametri} sono illustrati i parametri del sistema.
+
+\begin{table}[H]
+\centering
+\caption{Specifiche del modello.}
+\label{tab:Parametri}
+% Nota: Assicurati di aver incluso \usepackage{array} e \usepackage{amsmath} nel preambolo
+\begin{tabular}{|>{\centering\arraybackslash}m{4.2cm}|>{\centering\arraybackslash}m{2.2cm}|>{\centering\arraybackslash}m{2.2cm}|>{\centering\arraybackslash}m{3cm}|}
+\hline
+\textbf{Parametro} & \textbf{Simbolo} & \textbf{Valore} & \textbf{Unità di misura} \\
+\hline
+Massa & $m$ & $0.2$ & $\text{kg}$ \\
+\hline
+Braccio delle forze dei rotori & $l$ & $0.2$ & $\text{m}$ \\
+\hline
+Coefficiente attrito viscoso asse beccheggio & $c_{\alpha}$ & $0.01$ & $\frac{\text{N}\cdot\text{m}\cdot\text{s}}{\text{rad}}$ \\
+\hline
+Coefficiente attrito viscoso asse imbardata & $c_{\beta}$ & $0.01$ & $\frac{\text{N}\cdot\text{m}\cdot\text{s}}{\text{rad}}$ \\
+\hline
+Coefficiente di accoppiamento del rotore di coda sull'asse del beccheggio & $\epsilon_p$ & $0.1$ & adim. \\
+\hline
+Coefficiente di accoppiamento del rotore principale sull'asse di imbardata & $\epsilon_y$ & $0.1$ & adim. \\
+\hline
+Accelerazione di gravità & $g$ & $9.81$ & $\frac{\text{m}}{\text{s}^2}$ \\
+\hline
+Momento di inerza rispetto all'asse beccheggio & $J_{\alpha}$ & $0.012$ & $\text{kg}\cdot\text{m}^2$ \\
+\hline
+Componente di inerzia trasversale & $J_y$ & $0.00023$ & $\text{kg}\cdot\text{m}^2$ \\
+\hline
+Componente di Inerzia verticale & $J_z$ & $0.00364$ & $\text{kg}\cdot\text{m}^2$ \\
+\hline
+Componente inerzia della base & $I_b$ & $0.00023$ & $\text{kg}\cdot\text{m}^2$ \\
+\hline
+\end{tabular}
+\end{table}
 
 \subsection{Validazione del modello}
-Al fine di verificare la correttezza del modello implementato è stata eseguita una campagna preliminare di simulazioni utilizzando differenti profili di ingresso.
-In una prima fase sono stati applicati ingressi costanti ai due attuatori per osservare la risposta libera e forzata del sistema. Successivamente sono stati utilizzati ingressi sinusoidali multi-frequenza attorno ad un punto di equilibrio non nullo, in modo da eccitare simultaneamente le dinamiche di pitch e yaw.
-L'analisi delle traiettorie ottenute ha evidenziato un comportamento coerente con le aspettative fisiche. In particolare, un incremento della spinta del rotore principale produce una variazione predominante dell'angolo di pitch, mentre il rotore di coda influenza principalmente la dinamica di yaw. Sono inoltre visibili gli effetti di accoppiamento introdotti dai termini di cross-thrust e dalla dipendenza dello jacobiano d'inerzia dall'assetto.
-Le uscite dei sensori simulati risultano coerenti con i rispettivi modelli di osservazione e presentano variazioni compatibili con le deviazioni standard assegnate ai rumori di misura. La presenza di outlier genera occasionalmente deviazioni significative rispetto al valore nominale, consentendo di verificare il corretto funzionamento delle logiche di reiezione implementate nei filtri.
-I risultati ottenuti confermano pertanto la validità del modello dinamico e sensoriale adottato e ne consentono l'utilizzo come riferimento per la valutazione delle prestazioni dei filtri di stima.
-
-
-
-\placeholder{Riportare gli scenari di test usati per verificare la coerenza del modello.}
-
-Per validare il modello sono stati analizzati diversi ingressi di prova. Nel primo caso, ponendo
+\label{sec:Validazione_modello}
+Al fine di verificare la correttezza del modello implementato è stata eseguita una campagna preliminare di simulazioni utilizzando differenti profili di ingresso con componenti costanti per i 2 attuatori.
+Tutti i test sono stati effetuati a partire dalle condizioni iniziali
 \begin{equation}
-    \vect{u} = \begin{bmatrix}0 & 0\end{bmatrix}\transp,
+    x_0 = [10^\circ \quad 0 \quad 0 \quad 0]^T
 \end{equation}
-ci si aspetta che lo stato rimanga costante e che nelle uscite dei sensori sia presente soltanto la componente di rumore.
+
+In una prima fase sono stati applicati ingressi nulli
+ai due attuatori per osservare la risposta libera del sistema.
+Questo ha prodotto gli andamenti del vettore di stato visibili nelle Figure \ref{fig:Input_nulli_angoli} e \ref{fig:Input_nulli_rate}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/placeholder_figure.pdf}
-    \caption{Andamento delle componenti dello stato nello scenario di validazione.}
-    \label{fig:validazione_stato}
+    \includegraphics[width=0.9\textwidth]{figures/validazione_tau_0_0_alpha_beta.png}
+    \caption{Andamento angoli di beccheggio ed imbardata con ingressi nulli ai rotori}
+    \label{fig:Input_nulli_angoli}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/validazione_tau_0_0_alpha_beta_dot.png}
+    \caption{Andamento rate angolari di beccheggio ed imbardata con ingressi nulli ai rotori}
+    \label{fig:Input_nulli_rate}
+\end{figure}
+
+Da questi andamenti si verifica la correttezza del modello in quanto l'elicottero cade per effetto della gravità
+ed oscilla fino a fermarsi intorno al suo equilibrio stabile verticale ($\alpha = 0$).
+
+Successivamente sono stati utilizzati ingressi con componente costante solo su uno dei 2 ingressi per testare i fenomeni di accoppiamento.
+Ciò ha prodotto gli andamenti visibili nelle Figure \ref{fig:Input_caso2_angoli}, \ref{fig:Input_caso2_rate}, \ref{fig:Input_caso1_angoli} ed \ref{fig:Input_caso1_rate}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/validazione_tau_1_0_alpha_beta.png}
+    \caption{Andamento angoli di beccheggio ed imbardata con ingresso $F_1$ costante}
+    \label{fig:Input_caso2_angoli}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/validazione_tau_1_0_alpha_beta_dot.png}
+    \caption{Andamento rate angolari  di beccheggio ed imbardata con ingresso $F_1$ costante}
+    \label{fig:Input_caso2_rate}
+\end{figure}
+
+Nel primo caso è visibile la risposta all'azionamento del rotore principale ($F_1 = 0.3$ N).
+Per quanto riguarda il beccheggio si nota che la forza solleva l'elicottero innescando un transitorio oscillante.
+Tali oscillazioni vengono smorzate per effetto dell'attrito viscoso. Contestualmente, si osserva 
+un lento abbassamento dell'angolo $\alpha$: man mano che l'elicottero cambia il suo orientamento la spinta del rotore
+principale perde di efficacia verticale ($F_1\cos(\beta)$) confermando l'accopiamento geometrico del modello.
+Pur non avendo fornito alcun ingresso al rotore di coda, si osserva che l'elicottero inizia spontaneamente a ruotare 
+su se stesso. Questo comportamento valida l'accopiamento aerodinamico tra i rotori.
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/validazione_tau_0_1_alpha_beta.png}
+    \caption{Andamento angoli di beccheggio ed imbardata con ingresso $F_2$ costante}
+    \label{fig:Input_caso1_angoli}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/validazione_tau_0_1_alpha_beta_dot.png}
+    \caption{Andamento rate angolari di beccheggio ed imbardata con ingresso $F_2$ costante}
+    \label{fig:Input_caso1_rate}
+\end{figure}
+
+Nel secondo test l'elicottero viene sollecitato accendendo solamente il rotore di coda ($F_2 = 0.3$ N).
+Essendo privo di un richiamo gravitazionale, l'applicazione di una forza costante genera una rotazione continua 
+sull'asse dell'imbardata.
+L'elicottero accelera fino a quando la coppia impressa dall'elica di coda viene perfettamente
+bilanciata dalla resistenza aerodinamica e dall'attrito viscoso.
+I grafici della simulazione mostrano infatti una velocità angolare che sale
+e si stabilizza in modo pulito a un valore di crociera costante,
+confermando la bontà della dinamica del primo ordine implementata per l'orientamento.
+Pur essendo il rotore principale spento, l'angolo di pitch entra in un'oscillazione continua.
+Ciò valida l'accoppiamento teorico tra gli assi.
+
+\subsection{Sensori}
+La stima dello stato viene effettuata sfruttando misure provenienti da un accelerometro e da un magnetometro,
+modellati sulla base delle specifiche del sensore inerziale VectorNav VN-100,
+visibile in Figura \ref{fig:IMU}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/vectornav_VN100.png}
+    \caption{Sensore inerziale VectorNav VN-100}
+    \label{fig:IMU}
 \end{figure}
 
 
-
-
-\subsection{Sensori}
-La stima dello stato viene effettuata sfruttando misure provenienti da un accelerometro e da un magnetometro, modellati sulla base delle specifiche del sensore inerziale VectorNav VN-100.
 L'accelerometro viene utilizzato per ricavare una misura indiretta dell'angolo di pitch attraverso la relazione
 \[
 y_{acc}=g\sin(\alpha)+v_{acc}
@@ -267,18 +419,88 @@ dove (g) rappresenta l'accelerazione gravitazionale e ($v_{acc}$) è un rumore g
 La stima dell'angolo di yaw viene invece ottenuta mediante il magnetometro, il cui modello di osservazione è espresso come
 \[
 y_{magn}=
-\begin{bmatrix}
-M_0\cos(\beta)\
--M_0\sin(\beta)
-\end{bmatrix}
+[M_0\cos(\beta)\quad
+-M_0\sin(\beta)]^T
 +
 v_{magn}
 \]
-dove ($M_0$) rappresenta il modulo del campo magnetico terrestre locale e ($v_{magn}$) è il rumore di misura associato.
-I due sensori operano a frequenze differenti e generano pertanto un problema di fusione dati multi-rate. L'accelerometro fornisce aggiornamenti a frequenza superiore rispetto al magnetometro; di conseguenza i filtri di stima sono stati progettati in modo da eseguire la fase di correzione utilizzando esclusivamente le misure effettivamente disponibili all'istante corrente.
-Per aumentare il realismo della simulazione sono stati introdotti rumori gaussiani e misure spurie generate casualmente. Tali anomalie vengono successivamente identificate e rigettate mediante un test basato sulla distanza di Mahalanobis.
+dove ($M_0 = 46.5$ $\mu\text{T}$) rappresenta il modulo del campo magnetico terrestre locale e ($v_{magn}$) è il rumore di misura associato.
+I due sensori operano a frequenze differenti e generano pertanto un problema di fusione dati multi-rate.
+L'accelerometro fornisce aggiornamenti a frequenza superiore rispetto al magnetometro; di conseguenza i filtri di stima sono stati progettati in modo da eseguire
+la fase di correzione utilizzando esclusivamente le misure effettivamente disponibili all'istante corrente.
+In Tabella \ref{tab:Specifiche_sensori} sono riportate le specifiche per ciascun sensore.
+Per aumentare il realismo della simulazione sono stati introdotti rumori gaussiani e misure 
+spurie generate casualmente(outlier). 
+Tali anomalie vengono successivamente identificate e rigettate mediante un test basato sulla
+distanza di Mahalanobis. Nelle Figure \ref{fig:Schema_simulink_acc} e \ref{fig:Schema_simulink_magn} sono riportati
+gli schemi Simulink implementati per simulare i sensori.
+
+\begin{table}[H]
+\centering
+\caption{Specifiche dei sensori.}
+\label{tab:Specifiche_sensori}
+\begin{tabular}{|>{\centering\arraybackslash}m{4.2cm}|>{\centering\arraybackslash}m{3.5cm}|>{\centering\arraybackslash}m{3.5cm}|}
+\hline
+\textbf{Sensore} & \textbf{Dev. Standard rumore} & \textbf{Frequenza di lavoro} \\
+\hline
+Accelerometro & 0.0137 $\frac{\text{m}}{\text{s}^2}$ & $230$ Hz \\
+\hline
+Magnetometro & 0.14 $\mu\text{T}$ & $200$ Hz \\
+\hline
+\end{tabular}
+\end{table}
 
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/Schema_acc.png}
+    \caption{Schema Simulink accelerometro}
+    \label{fig:Schema_simulink_acc}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/Schema_magn.png}
+    \caption{Schema Simulink magnetometro}
+    \label{fig:Schema_simulink_magn}
+\end{figure}
+
+\subsubsection{Validazione dei Sensori}
+
+Per validare il modello di osservazione dei sensori è stato eseguito il medesimo test con ingressi nulli illustrato
+nella sezione \ref{sec:Validazione_modello}, e sono state monitorate le uscite dei 2 sensori.
+In Figura \ref{fig:Acc_input_nullo} è riportato l'andamento delle misure dell'accelerometro
+con e senza outlier.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/Acc_input_nullo.png}
+    \caption{Misura accelerometro con input nullo}
+    \label{fig:Acc_input_nullo}
+\end{figure}
+
+Il grafico dell'accelerometro mostra una sinusoide smorzata che converge asintoticamente a zero. L'andamento
+è perfettamente coerente con l'equazione di osservazione implementata.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/Mag_input_nullo_1.png}
+    \caption{Prima componente della misura di magnetometro con input nullo}
+    \label{fig:Mag_input_nullo_1}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/Mag_input_nullo_2.png}
+    \caption{Seconda componente della misura di magnetometro con input nullo}
+    \label{fig:Mag_input_nullo_2}
+\end{figure}
+
+I grafici relativi al magnetometro mostrano segnali
+che validano il modello matematico in assenza di rotazioni sull'asse verticale.
+Essendo l'angolo di imbardata costantemente nullo, nelle 2 misure del magnetometro
+compaiono soltanto i rumori secondo le specifiche del sensore.
 
 
 \section{Filtro di Kalman Esteso}

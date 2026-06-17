@@ -3,19 +3,20 @@
 \contentsline {section}{\numberline {1}Introduzione}{2}{section.1}%
 \contentsline {section}{\numberline {2}Implementazione e validazione del modello}{2}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Dinamica}{3}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Validazione del modello}{4}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Sensori}{5}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Filtro di Kalman Esteso}{6}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Predizione}{6}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Correzione}{7}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Reiezione delle misure spurie mediante distanza di Mahalanobis}{8}{subsubsection.3.2.1}%
-\contentsline {section}{\numberline {4}Filtro di Kalman Unscented}{8}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Predizione mediante stato aumentato}{9}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Correzione Unscented}{9}{subsection.4.2}%
-\contentsline {section}{\numberline {5}Rauch-Tung-Striebel Smoother}{10}{section.5}%
-\contentsline {section}{\numberline {6}Analisi dei risultati}{11}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Prestazioni dell'EKF}{11}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Prestazioni dell'UKF}{12}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Confronto tra EKF e UKF}{12}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Confronto tra EKF e RTS}{12}{subsection.6.4}%
-\contentsline {section}{\numberline {7}Conclusioni}{13}{section.7}%
+\contentsline {subsection}{\numberline {2.2}Validazione del modello}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Sensori}{9}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Validazione dei Sensori}{10}{subsubsection.2.3.1}%
+\contentsline {section}{\numberline {3}Filtro di Kalman Esteso}{12}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Predizione}{13}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Correzione}{13}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Reiezione delle misure spurie mediante distanza di Mahalanobis}{14}{subsubsection.3.2.1}%
+\contentsline {section}{\numberline {4}Filtro di Kalman Unscented}{15}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Predizione mediante stato aumentato}{15}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Correzione Unscented}{16}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Rauch-Tung-Striebel Smoother}{17}{section.5}%
+\contentsline {section}{\numberline {6}Analisi dei risultati}{17}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Prestazioni dell'EKF}{18}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Prestazioni dell'UKF}{18}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Confronto tra EKF e UKF}{18}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Confronto tra EKF e RTS}{19}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Conclusioni}{19}{section.7}%

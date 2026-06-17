@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.14)  15 JUN 2026 19:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.14)  17 JUN 2026 18:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -635,7 +635,7 @@ Package hyperref Info: Link coloring OFF on input line 79.
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-<figures/Logo_UNIPI.jpg, id=79, 302.12875pt x 167.62625pt>
+<figures/Logo_UNIPI.jpg, id=83, 302.12875pt x 167.62625pt>
 File: figures/Logo_UNIPI.jpg Graphic file (type jpg)
 <use figures/Logo_UNIPI.jpg>
 Package pdftex.def Info: figures/Logo_UNIPI.jpg  used on input line 90.
@@ -690,60 +690,144 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
                    \relax 
 l.112 \newpage
                [1]
-
-[2{C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}]
-<figures/placeholder_figure.pdf, id=122, 350.5095pt x 181.3977pt>
-File: figures/placeholder_figure.pdf Graphic file (type pdf)
-<use figures/placeholder_figure.pdf>
-Package pdftex.def Info: figures/placeholder_figure.pdf  used on input line 191.
-(pdftex.def)             Requested size: 384.1096pt x 198.79074pt.
+<figures/modello.jpg, id=117, 318.78pt x 216.48pt>
+File: figures/modello.jpg Graphic file (type jpg)
+<use figures/modello.jpg>
+Package pdftex.def Info: figures/modello.jpg  used on input line 146.
+(pdftex.def)             Requested size: 298.75264pt x 202.89664pt.
 
 
-[3{C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc} <./figures/placeholder_figure.pdf>]
+[2{C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc} <./figures/modello.jpg>]
+<figures/Schema_simulink_modello.png, id=127, 626.77017pt x 239.17929pt>
+File: figures/Schema_simulink_modello.png Graphic file (type png)
+<use figures/Schema_simulink_modello.png>
+Package pdftex.def Info: figures/Schema_simulink_modello.png  used on input line 160.
+(pdftex.def)             Requested size: 341.43437pt x 130.2972pt.
+
+
+[3{C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc} <./figures/Schema_simulink_modello.png>]
 
 [4]
-File: figures/placeholder_figure.pdf Graphic file (type pdf)
-<use figures/placeholder_figure.pdf>
-Package pdftex.def Info: figures/placeholder_figure.pdf  used on input line 252.
-(pdftex.def)             Requested size: 384.1096pt x 198.79074pt.
+<figures/validazione_tau_0_0_alpha_beta.png, id=160, 940.4736pt x 488.0634pt>
+File: figures/validazione_tau_0_0_alpha_beta.png Graphic file (type png)
+<use figures/validazione_tau_0_0_alpha_beta.png>
+Package pdftex.def Info: figures/validazione_tau_0_0_alpha_beta.png  used on input line 334.
+(pdftex.def)             Requested size: 384.1096pt x 199.33278pt.
 
 
 [5]
+<figures/validazione_tau_0_0_alpha_beta_dot.png, id=170, 936.1374pt x 488.0634pt>
+File: figures/validazione_tau_0_0_alpha_beta_dot.png Graphic file (type png)
+<use figures/validazione_tau_0_0_alpha_beta_dot.png>
+Package pdftex.def Info: figures/validazione_tau_0_0_alpha_beta_dot.png  used on input line 341.
+(pdftex.def)             Requested size: 384.1096pt x 200.25623pt.
+<figures/validazione_tau_1_0_alpha_beta.png, id=175, 939.0282pt x 509.7444pt>
+File: figures/validazione_tau_1_0_alpha_beta.png Graphic file (type png)
+<use figures/validazione_tau_1_0_alpha_beta.png>
+Package pdftex.def Info: figures/validazione_tau_1_0_alpha_beta.png  used on input line 354.
+(pdftex.def)             Requested size: 384.1096pt x 208.51431pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 355.
 
-[6]
 
-[7]
+[6 <./figures/validazione_tau_0_0_alpha_beta.png (PNG copy)> <./figures/validazione_tau_0_0_alpha_beta_dot.png (PNG copy)>]
+<figures/validazione_tau_1_0_alpha_beta_dot.png, id=185, 942.4008pt x 509.7444pt>
+File: figures/validazione_tau_1_0_alpha_beta_dot.png Graphic file (type png)
+<use figures/validazione_tau_1_0_alpha_beta_dot.png>
+Package pdftex.def Info: figures/validazione_tau_1_0_alpha_beta_dot.png  used on input line 361.
+(pdftex.def)             Requested size: 384.1096pt x 207.76761pt.
+<figures/validazione_tau_0_1_alpha_beta.png, id=186, 1139.457pt x 688.974pt>
+File: figures/validazione_tau_0_1_alpha_beta.png Graphic file (type png)
+<use figures/validazione_tau_0_1_alpha_beta.png>
+Package pdftex.def Info: figures/validazione_tau_0_1_alpha_beta.png  used on input line 378.
+(pdftex.def)             Requested size: 384.1096pt x 232.25061pt.
 
-[8]
 
-[9]
+[7 <./figures/validazione_tau_1_0_alpha_beta.png (PNG copy)> <./figures/validazione_tau_1_0_alpha_beta_dot.png (PNG copy)>]
+<figures/validazione_tau_0_1_alpha_beta_dot.png, id=192, 937.101pt x 509.7444pt>
+File: figures/validazione_tau_0_1_alpha_beta_dot.png Graphic file (type png)
+<use figures/validazione_tau_0_1_alpha_beta_dot.png>
+Package pdftex.def Info: figures/validazione_tau_0_1_alpha_beta_dot.png  used on input line 385.
+(pdftex.def)             Requested size: 384.1096pt x 208.93433pt.
 
-[10]
 
-[11]
+[8 <./figures/validazione_tau_0_1_alpha_beta.png (PNG copy)> <./figures/validazione_tau_0_1_alpha_beta_dot.png (PNG copy)>]
+<figures/vectornav_VN100.png, id=198, 622.325pt x 511.9125pt>
+File: figures/vectornav_VN100.png Graphic file (type png)
+<use figures/vectornav_VN100.png>
+Package pdftex.def Info: figures/vectornav_VN100.png  used on input line 408.
+(pdftex.def)             Requested size: 298.75264pt x 245.74644pt.
 
-[12]
 
-[13] (main.aux)
+[9 <./figures/vectornav_VN100.png>]
+<figures/Schema_acc.png, id=211, 656.4525pt x 411.6809pt>
+File: figures/Schema_acc.png Graphic file (type png)
+<use figures/Schema_acc.png>
+Package pdftex.def Info: figures/Schema_acc.png  used on input line 456.
+(pdftex.def)             Requested size: 341.43437pt x 214.12555pt.
+<figures/Schema_magn.png, id=212, 927.89517pt x 457.71pt>
+File: figures/Schema_magn.png Graphic file (type png)
+<use figures/Schema_magn.png>
+Package pdftex.def Info: figures/Schema_magn.png  used on input line 463.
+(pdftex.def)             Requested size: 341.43437pt x 168.42116pt.
+<figures/Acc_input_nullo.png, id=215, 1129.821pt x 687.0468pt>
+File: figures/Acc_input_nullo.png Graphic file (type png)
+<use figures/Acc_input_nullo.png>
+Package pdftex.def Info: figures/Acc_input_nullo.png  used on input line 477.
+(pdftex.def)             Requested size: 384.1096pt x 233.57185pt.
+
+
+[10 <./figures/Schema_acc.png> <./figures/Schema_magn.png>]
+<figures/Mag_input_nullo_1.png, id=223, 1136.5662pt x 688.974pt>
+File: figures/Mag_input_nullo_1.png Graphic file (type png)
+<use figures/Mag_input_nullo_1.png>
+Package pdftex.def Info: figures/Mag_input_nullo_1.png  used on input line 487.
+(pdftex.def)             Requested size: 384.1096pt x 232.83932pt.
+<figures/Mag_input_nullo_2.png, id=224, 1134.1572pt x 688.974pt>
+File: figures/Mag_input_nullo_2.png Graphic file (type png)
+<use figures/Mag_input_nullo_2.png>
+Package pdftex.def Info: figures/Mag_input_nullo_2.png  used on input line 495.
+(pdftex.def)             Requested size: 384.1096pt x 233.33344pt.
+
+
+[11 <./figures/Acc_input_nullo.png (PNG copy)> <./figures/Mag_input_nullo_1.png (PNG copy)>]
+
+[12 <./figures/Mag_input_nullo_2.png (PNG copy)>]
+
+[13]
+
+[14]
+
+[15]
+
+[16]
+
+[17]
+
+[18]
+
+[19]
+
+[20] (main.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: EB0B49B7F66FC2670CCA6B286690BCAB;3228.
+(rerunfilecheck)             Checksum: C9E7CC842D47E79829E6BFEE53223C40;3417.
  ) 
 Here is how much of TeX's memory you used:
- 22992 strings out of 468081
- 435850 string characters out of 5425788
- 879440 words of memory out of 5000000
- 51183 multiletter control sequences out of 15000+600000
- 686630 words of font info for 147 fonts, out of 8000000 for 9000
+ 23177 strings out of 468081
+ 441214 string characters out of 5425788
+ 885440 words of memory out of 5000000
+ 51322 multiletter control sequences out of 15000+600000
+ 696515 words of font info for 164 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,80p,1059b,1089s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmib10.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb>
-Output written on main.pdf (14 pages, 305635 bytes).
+ 75i,15n,80p,1059b,1089s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/giggi/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb>
+Output written on main.pdf (21 pages, 1547863 bytes).
 PDF statistics:
- 326 PDF objects out of 1000 (max. 8388607)
- 76 named destinations out of 1000 (max. 500000)
- 30883 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 393 PDF objects out of 1000 (max. 8388607)
+ 102 named destinations out of 1000 (max. 500000)
+ 37100 words of extra memory for PDF output out of 42996 (max. 10000000)
 

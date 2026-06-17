@@ -49,8 +49,10 @@ q_dot_0 = [alpha_dot_0 beta_dot_0]';     % Vettore condizioni iniziali per alpha
 %-------------------------------------------------------
 % Input del sistema (forze F1 ed F2)
 %-------------------------------------------------------
-F1 = 0.341 + 0.04 * sin(0.6 * t) + 0.02 * sin(1.4 * t);                % [N] Forza del rotore principale
-F2 = -0.006 + 0.010 * sin(0.8 * t + 0.3) + 0.006 * sin(1.7 * t);       % [N] Forza del rotore di coda
+%F1 = 0.341 + 0.04 * sin(0.6 * t) + 0.02 * sin(1.4 * t);                % [N] Forza del rotore principale
+%F2 = -0.006 + 0.010 * sin(0.8 * t + 0.3) + 0.006 * sin(1.7 * t);       % [N] Forza del rotore di coda
+F1 = 0 * t;
+F2 = 0 * t;
 u = [t, F1, F2];
 
 %% SENSORI: Accelerometro e Magnetometro (Vectornav vn-100)
@@ -163,4 +165,4 @@ for i =-n_state:n_state
 end
 
 % Chiamata al simulatore su Simulink
-out = sim('Elicottero2DOF_Sim.slx');
+out = sim('Elicottero2DOF_Sim.mdl');
